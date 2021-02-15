@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import useXterm from '../hooks/use-xterm';
 
-const ConsoleStyled = styled.div`
+import useXterm from '@/hooks/use-xterm';
+
+const TerminalStyled = styled.div`
   flex: 1 1 auto;
   height: 220px;
   min-width: 320px;
@@ -13,14 +14,14 @@ const ConsoleStyled = styled.div`
 `;
 
 export default function Console() {
-  const consoleRef = useRef();
+  const terminalRef = useRef();
   const xterm = useXterm();
 
   useEffect(() => {
-    xterm.open(consoleRef.current);
-  }, [xterm, consoleRef]);
+    xterm.open(terminalRef.current);
+  }, [xterm, terminalRef]);
 
   return (
-    <ConsoleStyled ref={consoleRef} />
+    <TerminalStyled ref={terminalRef} />
   );
 }

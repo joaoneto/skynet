@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const {
   CWD,
@@ -14,7 +15,7 @@ module.exports = {
   target: 'electron-renderer',
   entry: {
     main: [
-      path.resolve(CWD, SKYNET_SRC_DIRNAME, 'index.js'),
+      path.resolve(CWD, SKYNET_SRC_DIRNAME, 'index.tsx'),
     ],
   },
   output: {
@@ -28,6 +29,9 @@ module.exports = {
     modules: [
       path.resolve(CWD, SKYNET_SRC_DIRNAME),
       'node_modules',
+    ],
+    plugins: [
+      new TsconfigPathsPlugin({ configFile: './tsconfig.json' }),
     ],
   },
   optimization: {
