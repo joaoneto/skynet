@@ -1,0 +1,107 @@
+{
+  "skynet": {
+    "protocol": "http",
+    "port": "9000",
+    "hostname": "localhost"
+  },
+  "pids": [
+  ],
+  "projects": [
+    {
+      "id": "app-1",
+      "name": "project 1",
+      "cmd": {
+        "program": "npm",
+        "params": [
+          "run",
+          "dev"
+        ]
+      },
+      "env": {
+        "NODE_ENV": "development",
+        "PORT": "9001"
+      },
+      "cwd": "/home/joaoneto/projetos/ecommerce/projects/app1",
+      "target": {
+        "protocol": "http",
+        "port": "9001",
+        "hostname": "localhost"
+      },
+      "paths": [
+        "/app1"
+      ]
+    },
+    {
+      "id": "app-2",
+      "name": "project 2",
+      "cmd": {
+        "program": "npm",
+        "params": [
+          "run",
+          "dev"
+        ]
+      },
+      "env": {
+        "NODE_ENV": "development",
+        "PORT": "9002"
+      },
+      "cwd": "/home/joaoneto/projetos/ecommerce/projects/app1",
+      "target": {
+        "protocol": "http",
+        "port": "9002",
+        "hostname": "localhost"
+      },
+      "paths": [
+        "/app2"
+      ]
+    },
+    {
+      "id": "app-3",
+      "name": "project 3",
+      "cmd": {
+        "program": "npm",
+        "params": [
+          "run",
+          "dev"
+        ]
+      },
+      "env": {
+        "NODE_ENV": "development",
+        "PORT": "9001"
+      },
+      "cwd": "/home/joaoneto/projetos/ecommerce/projects/app1",
+      "target": {
+        "protocol": "http",
+        "port": "9001",
+        "hostname": "localhost"
+      },
+      "paths": [
+        "/app1"
+      ]
+    },
+    {
+      "id": "app-4",
+      "name": "project 4",
+      "cmd": {
+        "program": "npm",
+        "params": [
+          "run",
+          "dev"
+        ]
+      },
+      "env": {
+        "NODE_ENV": "development",
+        "PORT": "9002"
+      },
+      "cwd": "/home/joaoneto/projetos/ecommerce/projects/app1",
+      "target": {
+        "protocol": "http",
+        "port": "9002",
+        "hostname": "localhost"
+      },
+      "paths": [
+        "/app2"
+      ]
+    }
+  ]
+}
