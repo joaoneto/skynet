@@ -14,11 +14,13 @@
     "strict": false,
     "sourceMap": true,
     "jsx": "react",
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "paths": {
       "@/*": [
-        "*",
-        "src/*"
+        "*"
+      ],
+      "@/constants": [
+        "../constants"
       ]
     }
   },

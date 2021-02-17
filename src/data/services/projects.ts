@@ -1,15 +1,33 @@
-import * as config from '@/lib/config';
+import { ConfigRepo } from '@/data/repos';
+import { ProjectModel } from '@/data/models';
 
-export type ProjectsService = {
-  getAll(): [];
-};
+export interface ProjectsService {
+  getAll(): ProjectModel[];
+  getById(id: string): ProjectModel;
+  save(project): Promise<void>;
+}
 
-export type ProjectsServiceFactory = () => ProjectsService;
+export interface ProjectsServiceFactory {
+  (configRepo: ConfigRepo): ProjectsService;
+}
 
-export const ProjectService: ProjectsServiceFactory = () => {
+export const ProjectsServiceFactory: ProjectsServiceFactory = (
+  configRepo,
+): ProjectsService => {
   return {
     getAll() {
-      return [];
+      return configRepo.get('projects');
+    },
+
+    getById(id) {
+      return this.getAll().find((project) => project.id === id);
+    },
+
+    async save(project) {
+      const prevProject = this.getById(project.id);
+      configRepo.save([
+        { ...prevProject, ...project },
+      ], 'projects');
     },
   };
 };

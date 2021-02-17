@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-import useXterm from '@/hooks/use-xterm';
+import useXterm from '@/ui/hooks/use-xterm';
 
 const TerminalStyled = styled.div`
   flex: 1 1 auto;
