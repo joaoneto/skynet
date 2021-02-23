@@ -12,7 +12,7 @@ const {
 module.exports = {
   mode: 'development',
   devtool: 'source-map',
-  target: 'electron-renderer',
+  target: 'web',
   entry: {
     main: [
       path.resolve(CWD, SKYNET_SRC_DIRNAME, 'index.tsx'),

@@ -11,8 +11,10 @@ function createWindow() {
   console.log('Opening', ELECTRON_START_URL);
   mainWindow = new BrowserWindow({
     webPreferences: {
-      contextIsolation: false,
-      nodeIntegration: true,
+      contextIsolation: true,
+      nodeIntegration: false,
+      enableRemoteModule: false,
+      preload: path.join(__dirname, 'preload.js'),
     },
     width: 800,
     height: 600,

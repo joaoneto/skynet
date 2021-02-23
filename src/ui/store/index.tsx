@@ -19,7 +19,11 @@ const StoreContext = createContext<{
 });
 
 export const StoreProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(rootReducer, initialState);
+  const [state, dispatch] = useReducer(rootReducer, initialState, () => {
+    return {
+      projects: globalThis.__config_api__.getAll('projects'),
+    };
+  });
   return (
     <StoreContext.Provider value={{ state, dispatch }}>
       { children }

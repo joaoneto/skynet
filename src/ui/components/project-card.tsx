@@ -26,16 +26,10 @@ const ProjectCardName = styled.div`
   flex: 1;
 `;
 
-const ProjectCardAction = styled.a`
-  cursor: pointer;
-`;
-
-export default function ProjectCard({ project, onExecute, onExit }) {
+export default function ProjectCard({ project }) {
   return (
     <ProjectCardStyled>
       <ProjectCardName>{project.name}</ProjectCardName>
-      <ProjectCardAction onClick={() => onExecute(project.id)}>run</ProjectCardAction>
-      <ProjectCardAction onClick={() => onExit(project.id)}>stop</ProjectCardAction>
     </ProjectCardStyled>
   );
 }

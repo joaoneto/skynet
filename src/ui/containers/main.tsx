@@ -1,73 +1,22 @@
-import { spawn } from 'child_process';
-import React, { useState } from 'react';
+import React from 'react';
+import styled from 'styled-components';
 
-import { useStore } from '@/ui/store';
-
-import useXterm from '@/ui/hooks/use-xterm';
-
-import ProjectList from '@/ui/components/project-list';
-import ProjectCard from '@/ui/components/project-card';
-
-function MainSection() {
-  const xterm = useXterm();
-  const [pids, setPids] = useState({});
-  const { state } = useStore();
-
-  if (!state.projects) {
-    // loading
-    return null;
+const MainContainerStyled = styled.div`
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  background-color: ${({ theme }) => theme.color.primary};
+  position: relative;
+  overflow: hidden;
+  @media (min-width: 720px) {
+    flex-direction: row;
   }
+`;
 
-  function onExecute(projectId) {
-    const projectConfig = state.projects.find((project) => project.id === projectId);
-    const { program, params } = projectConfig.cmd;
-    const env = { ...process.env, ...projectConfig.env };
-    const { cwd } = projectConfig;
-    const projectProcess = spawn(program, params, { env, cwd, detached: true });
-
-    console.log(projectProcess);
-
-    // projectProcess.on('exit', (code) => {
-    //   console.log(code);
-    // });
-
-    // projectProcess.on('close', (code) => {
-    //   setPids({ ...pids, ...{ [projectId]: null } });
-    // });
-
-    projectProcess.stdout.on('data', (data) => {
-      xterm.write(data.toString().replace(/\n/g, '\r\n'));
-    });
-
-    projectProcess.stderr.on('data', (data) => {
-      xterm.write(data.toString().replace(/\n/g, '\r\n'));
-    });
-
-    setPids({ ...pids, ...{ [projectId]: projectProcess.pid } });
-    xterm.writeln(`SPAWN '${projectId}' ${projectProcess.pid}`);
-  }
-
-  function onExit(projectId) {
-    if (pids[projectId]) {
-      process.kill(-pids[projectId]);
-      xterm.writeln(`KILL '${projectId}' ${pids[projectId]}`);
-    }
-  }
-
+export default function MainContainer({ children }) {
   return (
-    <ProjectList>
-      {state.projects.map((project) => {
-        return (
-          <ProjectCard
-            key={project.id}
-            project={project}
-            onExecute={onExecute}
-            onExit={onExit}
-          />
-        );
-      })}
-    </ProjectList>
+    <MainContainerStyled>
+      {children}
+    </MainContainerStyled>
   );
 }
-
-export default MainSection;
