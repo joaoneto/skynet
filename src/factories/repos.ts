@@ -1,3 +1,3 @@
-import { ConfigRepoFactory } from '@/data/repos';
+import { ProjectsRepoFactory } from '@/data/repos';
 
-export const configRepo = ConfigRepoFactory();
+export const projectsRepo = ProjectsRepoFactory();

@@ -1,4 +1,4 @@
-import { configRepo } from '@/factories/repos';
+import { projectsRepo } from '@/factories/repos';
 import { ProjectsServiceFactory } from '@/data/services';
 
-export const projectsService = ProjectsServiceFactory(configRepo);
+export const projectsService = ProjectsServiceFactory(projectsRepo);
