@@ -5,10 +5,7 @@
     "editor.tabSize": 2,
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
-    "editor.rulers": [
-        80,
-        120
-    ],
+    "editor.rulers": [100],
     "eslint.packageManager": "yarn",
     "eslint.validate": [
         "javascript",
@@ -16,9 +13,17 @@
         "typescript",
         "typescriptreact"
     ],
+    "eslint.options": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+    },
     "eslint.workingDirectories": [
         {
             "mode": "auto"
         }
-    ]
+    ],
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "editor.formatOnSave": true,
+    "eslint.format.enable": true
 }

@@ -1,5 +1,5 @@
 const fs = require('fs').promises;
-const { contextBridge, ipcRenderer } = require('electron');
+const { contextBridge } = require('electron');
 
 const { SKYNET_CONFIG_PATH } = require('../constants');
 

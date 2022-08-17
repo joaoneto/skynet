@@ -53,7 +53,8 @@
       "components": ["Link", "Hyperlink"],
       "specialLink": ["hrefLeft", "hrefRight"],
       "aspects": ["invalidHref", "preferButton"]
-    }]
+    }],
+    "react/react-in-jsx-scope": "off"
   },
   "overrides": [
     {

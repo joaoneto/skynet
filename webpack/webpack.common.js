@@ -1,7 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const {
   CWD,
@@ -22,6 +23,7 @@ module.exports = {
     path: path.resolve(CWD, SKYNET_DIST_DIRNAME),
     filename: '[name].[fullhash:8].js',
     chunkFilename: '[name].[fullhash:8].chunk.js',
+    clean: true,
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
@@ -40,18 +42,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.t|jsx?$/,
         include: [path.resolve(CWD, SKYNET_SRC_DIRNAME)],
-        use: [
-          { loader: 'babel-loader' },
-        ],
-      },
-      {
-        test: /\.tsx?$/,
-        include: [path.resolve(CWD, SKYNET_SRC_DIRNAME)],
-        use: [
-          { loader: 'ts-loader' },
-        ],
+        use: {
+          // `.swcrc` can be used to configure swc
+          loader: 'swc-loader'
+        }
       },
       {
         test: /\.(png|jpe?g|gif|woff2?)$/i,
@@ -67,19 +63,12 @@ module.exports = {
           },
         ],
       },
-      {
-        test: /\.svg$/,
-        use: [
-          '@svgr/webpack',
-          'url-loader',
-        ],
-      },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(CWD, SKYNET_SRC_DIRNAME, 'index.html'),
     }),
-    new CleanWebpackPlugin(),
+    new ForkTsCheckerWebpackPlugin(),
   ],
 };
