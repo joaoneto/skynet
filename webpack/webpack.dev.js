@@ -4,8 +4,5 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
-  plugins: [
-    new ReactRefreshWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-  ],
+  plugins: [new ReactRefreshWebpackPlugin(), new webpack.HotModuleReplacementPlugin()],
 };
