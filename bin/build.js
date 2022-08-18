@@ -6,15 +6,20 @@ const compiler = webpack(webpackCommonConfig);
 
 compiler.run((err, stats) => {
   if (err || stats.hasErrors()) {
-    console.error(err, stats.toString({
-      colors: true,
-      chunks: false,
-    }));
+    console.error(
+      err,
+      stats.toString({
+        colors: true,
+        chunks: false,
+      }),
+    );
     process.exit(1);
   }
 
-  process.stdout.write(`${stats.toString({
-    colors: true,
-    chunks: false,
-  })}\n`);
+  process.stdout.write(
+    `${stats.toString({
+      colors: true,
+      chunks: false,
+    })}\n`,
+  );
 });

@@ -17,28 +17,21 @@ const {
   SKYNET_DEVSERVER_PORT,
   SKYNET_DEVSERVER_HOST,
 } = require('../constants');
-const devServer = require('../webpack/dev-server')(
-  compiler,
-  {
-    contentBase: path.resolve(CWD, SKYNET_DIST_DIRNAME),
-    port: SKYNET_DIST_DIRNAME,
-    host: SKYNET_DEVSERVER_HOST,
-  },
-);
+const devServer = require('../webpack/dev-server')(compiler, {
+  contentBase: path.resolve(CWD, SKYNET_DIST_DIRNAME),
+  port: SKYNET_DIST_DIRNAME,
+  host: SKYNET_DEVSERVER_HOST,
+});
 
 devServer.listen(SKYNET_DEVSERVER_PORT, SKYNET_DEVSERVER_HOST, () => {
   console.log(`DevServer listening on port ${SKYNET_DEVSERVER_PORT}`);
-  spawn(
-    path.resolve(CWD, './node_modules/.bin/electron'),
-    ['.'],
-    {
-      stdio: 'inherit',
-      cwd: CWD,
-      env: {
-        ...process.env,
-        ELECTRON_START_URL,
-      },
-      shell: true,
+  spawn(path.resolve(CWD, './node_modules/.bin/electron'), ['.'], {
+    stdio: 'inherit',
+    cwd: CWD,
+    env: {
+      ...process.env,
+      ELECTRON_START_URL,
     },
-  );
+    shell: true,
+  });
 });
