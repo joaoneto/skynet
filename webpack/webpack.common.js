@@ -6,7 +6,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const { CWD, SKYNET_SRC_DIRNAME, SKYNET_DIST_DIRNAME } = require('../constants');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   devtool: 'source-map',
   target: 'web',
   entry: {
@@ -25,7 +25,7 @@ module.exports = {
     plugins: [new TsconfigPathsPlugin({ configFile: './tsconfig.json' })],
   },
   optimization: {
-    minimize: false,
+    minimize: true,
   },
   module: {
     rules: [
@@ -57,6 +57,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(CWD, SKYNET_SRC_DIRNAME, 'index.html'),
     }),
-    new ForkTsCheckerWebpackPlugin(),
+    new ForkTsCheckerWebpackPlugin({
+      async: true,
+    }),
   ],
 };
