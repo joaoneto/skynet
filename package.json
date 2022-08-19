@@ -46,5 +46,8 @@
     "url-loader": "^4.1.1",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
+  },
+  "resolutions": {
+    "nan": "github:jkleinsc/nan#remove_accessor_signature"
   }
 }
