@@ -2,7 +2,9 @@ export {};
 declare global {
   interface Window {
     api: {
-      getTextList: () => Promise<string[]>;
+      getProjects: () => Promise<any[]>;
+      addProject: () => Promise<void>;
+      updateProject: () => Promise<void>;
     };
   }
 }

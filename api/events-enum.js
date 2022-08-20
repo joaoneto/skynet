@@ -1,3 +1,5 @@
 module.exports = {
-  GET_TEXT_LIST: 'getTextList',
+  GET_PROJECTS: 'getProjects',
+  ADD_PROJECT: 'addProject',
+  UPDATE_PROJECT: 'updateProject',
 };

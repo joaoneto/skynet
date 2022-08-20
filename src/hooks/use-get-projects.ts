@@ -1,21 +1,26 @@
 import { useEffect, useState } from 'react';
 
-export function useTextList() {
-  const [textList, setTextList] = useState<string[]>([]);
+interface Project {
+  id: string;
+  name: string;
+}
+
+export default function useGetProjects() {
+  const [projects, setProjects] = useState<Project[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     window.api
-      .getTextList()
-      .then((response) => setTextList(response))
+      .getProjects()
+      .then((response) => setProjects(response))
       .catch((err) => setError(err))
       .finally(() => setIsLoading(false));
   }, []);
 
   return {
     error,
-    data: textList,
+    data: projects,
     isLoading,
     isError: error !== null,
   };

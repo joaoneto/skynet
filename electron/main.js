@@ -1,7 +1,6 @@
 const path = require('path');
-const { app, BrowserWindow, ipcMain } = require('electron');
-const getTextList = require('../api/get-text-list');
-const eventsEnum = require('../api/events-enum');
+const { app, BrowserWindow } = require('electron');
+const initHandlers = require('./handlers');
 
 const ELECTRON_START_URL = process.env.ELECTRON_START_URL
   ? process.env.ELECTRON_START_URL
@@ -22,16 +21,11 @@ function createWindow() {
     width: 800,
     height: 600,
   });
-
-  ipcMain.handle(eventsEnum.GET_TEXT_LIST, async () => {
-    const textList = await getTextList();
-    return textList;
-  });
-
   mainWindow.loadURL(ELECTRON_START_URL);
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
+  initHandlers();
 }
 
 app.on('ready', createWindow);
