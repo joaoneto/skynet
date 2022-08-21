@@ -18,7 +18,7 @@ function createWindow() {
       enableRemoteModule: false,
       preload: path.join(__dirname, 'preload.js'),
     },
-    width: 800,
+    width: 640,
     height: 600,
   });
   mainWindow.loadURL(ELECTRON_START_URL);
